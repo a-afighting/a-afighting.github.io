@@ -166,7 +166,6 @@ function selectAnswer(choice) {
 // 結果を表示
 //------------------------------------------------------
 function showResult() {
-  // ▼ ここが超重要！非表示 → 表示にする
   const rDiv = document.getElementById("result");
   rDiv.style.display = "block";
 
@@ -174,16 +173,25 @@ function showResult() {
   const idx = scores.indexOf(maxScore);
   const userType = types[idx];
 
+  // 新しい相性判定（BEST1/WORST1）
+  const { best, worst } = getBestAndWorstCompatibility(userType);
 
   rDiv.innerHTML = `
     <h2>あなたのタイプは ${userType.name}！</h2>
     <img src="${userType.img}">
     <p>${userType.text}</p>
-    <p><strong>相性の良いタイプ：</strong> ${best.join(", ")}</p>
 
+    <div class="compatibility-block">
+      <h3>❤️ 相性がいいタイプ（ベスト1）</h3>
+      <p><b>${best.name}</b>（${best.rank}）<br>${best.desc}</p>
+
+      <h3>💔 相性が悪いタイプ（ワースト1）</h3>
+      <p><b>${worst.name}</b>（${worst.rank}）<br>${worst.desc}</p>
+    </div>
   `;
 
   rDiv.classList.add("show");
+}
 
   // 質問エリアは消す
   document.getElementById("quiz").innerHTML = "";
