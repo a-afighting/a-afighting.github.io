@@ -191,7 +191,7 @@ function showResult() {
   `;
 
   rDiv.classList.add("show");
-}
+
 
   // 質問エリアは消す
   document.getElementById("quiz").innerHTML = "";
