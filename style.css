@@ -185,4 +185,53 @@ a.share-btn:hover {
   text-decoration: underline;
 }
 
+/* ====== 相性表示ブロック ====== */
+
+.compatibility-block {
+  margin-top: 20px;
+  padding: 18px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 2px solid #ffb6d9;  /* ふわっとピンクの枠 */
+}
+
+.compatibility-block h3 {
+  color: #ff6fa8; /* サンリオっぽいピンク */
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.compatibility-block p {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #444;
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border-left: 4px solid #ffb6d9;
+  margin-bottom: 18px;
+}
+
+/* BEST（◎）と WORST（△）の強調 */
+.compatibility-block b {
+  color: #d9578d; /* 少し濃いピンクで強調 */
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
+  .compatibility-block {
+    padding: 15px;
+  }
+
+  .compatibility-block h3 {
+    font-size: 1.1em;
+  }
+
+  .compatibility-block p {
+    font-size: 0.9em;
+  }
+}
+
 
