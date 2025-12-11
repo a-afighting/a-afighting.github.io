@@ -174,13 +174,6 @@ function showResult() {
   const idx = scores.indexOf(maxScore);
   const userType = types[idx];
 
-  // 相性が良いタイプTOP3
-  const compScores = compatibility[idx];
-  const best = compScores
-    .map((s, i) => ({ score: s, idx: i }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
-    .map((o) => types[o.idx].name);
 
   rDiv.innerHTML = `
     <h2>あなたのタイプは ${userType.name}！</h2>
@@ -196,3 +189,24 @@ function showResult() {
   document.getElementById("quiz").innerHTML = "";
 }
 
+function getBestAndWorstCompatibility(typeObj) {
+  const comp = typeObj.compatibility;
+
+  // rank を数値化して大小比較しやすくする
+  const rankValue = { "◎": 3, "〇": 2, "△": 1 };
+
+  const list = Object.entries(comp).map(([name, info]) => ({
+    name,
+    rank: info.rank,
+    desc: info.desc,
+    value: rankValue[info.rank]
+  }));
+
+  // 相性が良い BEST1（最大値）
+  const best = list.reduce((a, b) => (a.value > b.value ? a : b));
+
+  // 相性が悪い WORST1（最小値）
+  const worst = list.reduce((a, b) => (a.value < b.value ? a : b));
+
+  return { best, worst };
+}
