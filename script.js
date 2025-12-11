@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const startScreen = document.getElementById("startScreen");
   const quiz = document.getElementById("quiz");
 
+  if (!startBtn || !startScreen || !quiz) {
+    console.error("❌ HTML構造に必要な要素が足りていません。ID を再確認してください。");
+    return;
+  }
+
+  quiz.style.display = "none"; // 初期で隠す
+  startScreen.style.display = "block";
+
   startBtn.onclick = () => {
     startScreen.style.display = "none";
     quiz.style.display = "block";
